@@ -1,27 +1,34 @@
 const { Schema, Types } = require('mongoose');
+const moment = require('moment')
 
-const assignmentSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    assignmentId: {
+    reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
-    assignmentName: {
+    reactionBody: {
       type: String,
       required: true,
-      maxlength: 50,
-      minlength: 4,
-      default: 'Unnamed assignment',
+      maxlength: 280,
     },
-    score: {
+    username: {
       type: Number,
       required: true,
-      default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
     },
     createdAt: {
       type: Date,
       default: Date.now,
     },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (date) => {
+            // finding the correct format for the timestamp was not fun. But through moment.js documentations i found it!
+            const formattedData = moment(date).format("MMM DD, YYYY [at] hh:mma")
+            return formattedData;
+        }
+    }
   },
   {
     toJSON: {
@@ -31,4 +38,4 @@ const assignmentSchema = new Schema(
   }
 );
 
-module.exports = assignmentSchema;
+module.exports = reactionSchema;
