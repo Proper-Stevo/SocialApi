@@ -21,7 +21,7 @@ module.exports = {
     },
 
     // Create a thought
-    createThoughts(req, res) {
+    createThought(req, res) {
         Thoughts.create(req.body)
             .then((thought) => res.json(thought))
             .catch((err) => {
