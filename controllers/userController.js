@@ -2,7 +2,7 @@ const { ObjectId } = require('mongoose').Types;
 const { User, Thoughts } = require('../models');
 
 module.exports = {
-  // Get all students
+  // Get all users
   getUsers(req, res) {
     User.find()
       .then(async (user) => {
@@ -30,13 +30,13 @@ module.exports = {
   },
   // create a new student
   createUser(req, res) {
-    Student.create(req.body)
+    User.create(req.body)
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
   // Delete a user and remove them from the thought
   deleteUser(req, res) {
-    Student.findOneAndRemove({ _id: req.params.userId })
+    User.findOneAndRemove({ _id: req.params.userId })
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })
