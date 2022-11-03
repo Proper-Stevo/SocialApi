@@ -12,11 +12,11 @@ const thoughtSchema = new Schema(
       minlength: 1,
     },
     createdAt: {
-      type: Boolean,
+      type: Date,
       default: Date.now(),
       get: (date) => {
         //same format as before
-        const formattedData = moment(date).format("MMM DD, [at] hh:mma")
+        const formattedData = moment(date).format("MMM DD, YYYY [at] hh:mma")
         return formattedData
       }
     },
