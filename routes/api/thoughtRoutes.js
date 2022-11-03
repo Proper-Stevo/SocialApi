@@ -21,7 +21,7 @@ router
 
 
 // api/thoughts/thoughtID/reactions
-router.route('/:thoughtId/reactions/:reactionsId').post(addReaction);
+router.route('/:thoughtId/reactions/').post(addReaction);
 
 // api/thoughts/:thoughtID/reactions/reactionID
 router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction)
